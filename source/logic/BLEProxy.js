@@ -1,6 +1,6 @@
 import { BleManager } from 'react-native-ble-plx';
 
-const fakeIt = true;
+const fakeIt = false;
 
 export default class BLEProxy {
   // public
@@ -34,6 +34,14 @@ export default class BLEProxy {
     }
   }
 
+  syncData = async (deviceID) => {
+    let device = await this.manager.discoverAllServicesAndCharacteristicsForDevice(deviceID);
+    let services = await device.services();
+    let characteristics = await this.manager.characteristicsForDevice(deviceID, services[0].uuid);
+    let battery = await device.readCharacteristicForService(services[0].uuid, characteristics[0].uuid);
+    console.log(battery.value);
+  }
+
   connect(deviceID, callback) {
     if (fakeIt) {
       callback();
@@ -41,7 +49,7 @@ export default class BLEProxy {
     else {
       this.manager.stopDeviceScan();
       this.manager.connectToDevice(deviceID).then((resp) => {
-        console.log(resp);
+        callback();
       });
     }
   }

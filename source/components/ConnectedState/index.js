@@ -7,14 +7,14 @@ import TopBar from '../TopBar';
 import Button from './Button';
 import { styles } from './styles';
 import { toRelativeTime } from './time';
-import { receiveData } from '../../logic/HttpProxy';
+import { receiveData, s3 } from '../../logic/HttpProxy';
 import { read, write, deleteFile } from '../../logic/FileSystemProxy';
 
 class ConnectedState extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      battery: 82,
+      //battery: 82,
       storage: 43,
       lastSync: -1,
       lastPush: -1
@@ -43,26 +43,31 @@ class ConnectedState extends Component {
   push(callback) {
     read((resp) => {
       console.log(resp);
-      deleteFile((resp) => {
+      let uploader = new s3();
+      uploader.uploadFile(resp, 'patient', () => {
         let time = Date.now();
-        AsyncStorage.setItem(`lastPush`, JSON.stringify(time));
-        this.setState({lastPush: time});
-        setTimeout(callback, 1000);
-      });
+        AsyncStorage.setItem(`lastPush`, JSON.stringify(time)).then(() => {
+          this.setState({lastPush: time});
+          deleteFile();
+          callback();
+        });
+      }, () => { console.log('failure'); callback() });
     });
 
   }
 
   sync(callback) {
-    receiveData( (resp) => {
-      console.log("got data");
-      write(resp.data, () => {
+    this.props.BLE.syncData(this.props.device.uuid);
+    callback();
+    /*receiveData( (resp) => {
+      write(JSON.stringify(resp.data), () => {
         let time = Date.now();
-        AsyncStorage.setItem(`lastSync`, JSON.stringify(time));
-        this.setState({lastSync: time});
-        callback();
+        AsyncStorage.setItem(`lastSync`, JSON.stringify(time)).then(() => {
+          this.setState({lastSync: time});
+          callback();
+        });
       });
-    });
+    });*/
   }
 
   render() {
@@ -72,7 +77,7 @@ class ConnectedState extends Component {
           <Image style={styles.image} source={require('../../../assets/img/BackHarnessWoman.png')} />
           <View style={styles.textView}>
             <Text style={styles.text}>{this.props.device.name}</Text>
-            <Text style={styles.text}>Battery:<Text style={styles.textNotBold}> {this.state.battery}%</Text></Text>
+            <Text style={styles.text}>Battery:<Text style={styles.textNotBold}> {this.state.battery || '-'}%</Text></Text>
             <Text style={styles.text}>Storage:<Text style={styles.textNotBold}> {this.state.storage}%</Text></Text>
             <Text style={styles.text}>Last Sync:<Text style={styles.textNotBold}> {toRelativeTime(this.state.lastSync, Date.now())}</Text></Text>
             <Text style={styles.text}>Last Push:<Text style={styles.textNotBold}> {toRelativeTime(this.state.lastPush, Date.now())}</Text></Text>
@@ -90,7 +95,8 @@ class ConnectedState extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    device: state.addedDevice
+    device: state.addedDevice,
+    BLE: state.BLE
   };
 }
 
