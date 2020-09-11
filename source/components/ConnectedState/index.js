@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
+const Buffer = require('buffer/').Buffer
 
 import TopBar from '../TopBar';
 import Button from './Button';
@@ -57,8 +58,34 @@ class ConnectedState extends Component {
   }
 
   sync(callback) {
-    this.props.BLE.syncData(this.props.device.uuid);
-    callback();
+    this.props.BLE.syncData(this.props.device.uuid, (error, data) => {
+      if (error) {
+        console.log(error);
+        return;
+      }
+      let buf = new Buffer(data.value, 'base64');
+
+      if (this.max === null || this.max === undefined || this.count === null || this.count === undefined) {
+        this.max = buf.toJSON().data[0];
+        this.count = 0;
+        console.log("set max to " + this.max);
+      }
+
+      else if (this.count < this.max) {
+        this.count++;
+        console.log(buf.toJSON().data[0], this.count);
+      }
+
+      else {
+        console.log(buf.toJSON().data[0], this.count);
+        this.count = null;
+        this.max = null;
+        callback();
+        this.props.BLE.endSync();
+      }
+
+
+    });
     /*receiveData( (resp) => {
       write(JSON.stringify(resp.data), () => {
         let time = Date.now();
