@@ -49,8 +49,8 @@ export default class Button extends Component {
 
   buttonText() {
     if (this.state.syncing || this.state.pushing) {
-      if (this.props.pos) return "Pushing";
-      else return "Syncing";
+      if (this.props.pos) return "Syncing";
+      else return "Pushing";
     }
     else {
         if (this.props.pos) return "Sync";
