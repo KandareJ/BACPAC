@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { connect } from 'react-redux';
 
-import { selectDevice } from '../../actions';
+import { selectDevice, removeDevice } from '../../actions';
 import { styles } from './styles';
 
 class Device extends Component {
@@ -13,7 +13,15 @@ class Device extends Component {
   }
 
   devicePress() {
-    this.props.BLE.connect(this.props.device.id, () => { this.props.selectDevice(this.props.device.id, this.props.device.name); } );
+    this.props.BLE.connect(this.props.device.id,
+      () => {
+        this.props.selectDevice(this.props.device.id, this.props.device.name);
+      },
+      (error) => {
+        if (error) console.log("error", error);
+        this.props.removeDevice();
+        Alert.alert('Disconnected', 'Please reconnect to your BACPAC device', [{ text: 'Continue' }]);
+      });
   }
 
   render() {
@@ -34,4 +42,4 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { selectDevice })(Device);
+export default connect(mapStateToProps, { selectDevice, removeDevice })(Device);

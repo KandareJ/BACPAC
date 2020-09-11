@@ -13,7 +13,7 @@ export default class BLEProxy {
     }
   }
 
-  async scan(callback) {
+  scan = async (callback) => {
     if (fakeIt) {
       callback(null, {name: "BACPAC", id: "asdf-ghjk-lmnb"})
     }
@@ -40,18 +40,27 @@ export default class BLEProxy {
     let characteristics = await this.manager.characteristicsForDevice(deviceID, services[0].uuid);
     let battery = await device.readCharacteristicForService(services[0].uuid, characteristics[0].uuid);
     console.log(battery.value);
+    this.manager.monitorCharacteristicForDevice(deviceID, services[0].uuid, characteristics[0].uuid, (error, data) => {
+      if (error) console.log("error", error);
+      else {
+        console.log(data.value);
+        this.manager.cancelTransaction("booty");
+      }
+    }, "booty");
   }
 
-  connect(deviceID, callback) {
+  connect = async (deviceID, callback, onDisconnect) => {
     if (fakeIt) {
       callback();
     }
     else {
       this.manager.stopDeviceScan();
-      this.manager.connectToDevice(deviceID).then((resp) => {
-        callback();
-      });
+      await this.manager.connectToDevice(deviceID);
+      await this.manager.onDeviceDisconnected(deviceID, onDisconnect);
+      callback();
     }
   }
+
+  disconnect
 
 }

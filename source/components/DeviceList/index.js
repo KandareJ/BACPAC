@@ -29,10 +29,8 @@ class DeviceList extends Component {
       console.log(device.id, device.name);
       this.setState({...this.state, [device.id]: device});
     }
-    //this.props.BLE.connect();
   }
 
-//return (<Device device={device} key={device.id} />);
   listDevices() {
     return Object.keys(this.state).map((key) => {
       return (<Device device={this.state[key]} key={key} />);
