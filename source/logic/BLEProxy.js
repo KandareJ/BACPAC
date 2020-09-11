@@ -61,6 +61,4 @@ export default class BLEProxy {
     }
   }
 
-  disconnect
-
 }
