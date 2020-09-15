@@ -9,10 +9,10 @@ export const styles = StyleSheet.create({
   image: {
     resizeMode: 'contain',
     flex: 1,
-    marginTop: 10
+    marginTop: 30
   },
   button: {
-    marginTop: 30,
+    marginTop: 40,
     backgroundColor: 'rgb(70,100,140)',
     height: 70,
     width: '60%',
@@ -25,10 +25,13 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: .7,
     flexDirection: 'row',
-    marginBottom: 70
+    marginBottom: 10
+  },
+  plainButton: {
+    marginBottom: 50
   },
   buttonPress: {
-    marginTop: 30,
+    marginTop: 40,
     backgroundColor: 'rgb(70,100,140)',
     height: 70,
     width: '60%',
@@ -41,10 +44,10 @@ export const styles = StyleSheet.create({
     shadowOffset: { width: 2, height: 2 },
     shadowOpacity: .7,
     opacity: .9,
-    marginBottom: 70
+    marginBottom: 10
   },
   textView: {
-    marginTop: 10,
+    marginTop: 30,
   },
   text: {
     fontSize: 20,

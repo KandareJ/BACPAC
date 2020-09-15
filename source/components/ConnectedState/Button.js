@@ -11,33 +11,23 @@ export default class Button extends Component {
     super(props);
     this.state = {
       buttonPress: false,
-      syncing: false,
-      pushing: false
+      syncing: false
     };
 
     this.buttonStyle = this.buttonStyle.bind(this);
-    this.buttonText = this.buttonText.bind(this);
     this.onButtonStateChange = this.onButtonStateChange.bind(this);
     this.finishSyncing = this.finishSyncing.bind(this);
-    this.finishPushing = this.finishPushing.bind(this);
     this.renderButtonText = this.renderButtonText.bind(this);
   }
 
   onButtonStateChange({nativeEvent}) {
-    if (!this.state.syncing && !this.state.pushing) {
+    if (!this.state.syncing) {
       if (nativeEvent.state === State.BEGAN) {
         this.setState({isPressed: true});
       }
       else if (nativeEvent.state === State.ACTIVE) {
-        this.setState({isPressed: false});
-        if (this.props.pos) {
-          this.setState({ syncing: true });
-          this.props.sync(this.finishSyncing);
-        }
-        else {
-          this.setState({ pushing: true });
-          this.props.push(this.finishPushing);
-        }
+        this.setState({isPressed: false, syncing: true});
+        this.props.sync(this.finishSyncing);
       }
     }
   }
@@ -47,38 +37,23 @@ export default class Button extends Component {
     else return styles.button;
   }
 
-  buttonText() {
-    if (this.state.syncing || this.state.pushing) {
-      if (this.props.pos) return "Syncing";
-      else return "Pushing";
-    }
-    else {
-        if (this.props.pos) return "Sync";
-        else return "Push";
-    }
-  }
-
   finishSyncing() {
     this.setState({ syncing: false });
   }
 
-  finishPushing() {
-    this.setState({ pushing: false });
-  }
-
   renderButtonText() {
-    if (this.state.syncing || this.state.pushing) {
+    if (this.state.syncing) {
       return (
         <Animated.View style={this.buttonStyle()}>
           <Image style={styles.pulse} source={require('../../../assets/img/SpinnerLoading.gif')} />
-          <Text style={styles.buttonText}>{this.buttonText()}</Text>
+          <Text style={styles.buttonText}>Syncing</Text>
         </Animated.View>
       );
     }
     else {
       return (
         <Animated.View style={this.buttonStyle()}>
-          <Text style={styles.buttonText}>{this.buttonText()}</Text>
+          <Text style={styles.buttonText}>Sync</Text>
         </Animated.View>
       );
     }

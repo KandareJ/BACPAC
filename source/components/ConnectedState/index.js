@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, SafeAreaView } from 'react-native';
+import { View, Text, Image, SafeAreaView, Button as PlainButton, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-community/async-storage';
 const Buffer = require('buffer/').Buffer
@@ -15,14 +15,12 @@ class ConnectedState extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //battery: 82,
+      battery: 82,
       storage: 43,
-      lastSync: -1,
-      lastPush: -1
+      lastSync: -1
     }
 
     this.readStorage = this.readStorage.bind(this);
-    this.push = this.push.bind(this);
     this.sync = this.sync.bind(this);
 
     this.readStorage();
@@ -33,34 +31,16 @@ class ConnectedState extends Component {
   }
 
   readStorage() {
-    AsyncStorage.getItem(`lastPush`).then((value) => {
-      if (value !== null) this.setState({lastPush: JSON.parse(value)});
-    });
     AsyncStorage.getItem(`lastSync`).then((value) => {
       if (value !== null) this.setState({lastSync: JSON.parse(value)});
     })
-  }
-
-  push(callback) {
-    read((resp) => {
-      console.log(resp);
-      let uploader = new s3();
-      uploader.uploadFile(resp, 'patient', () => {
-        let time = Date.now();
-        AsyncStorage.setItem(`lastPush`, JSON.stringify(time)).then(() => {
-          this.setState({lastPush: time});
-          deleteFile();
-          callback();
-        });
-      }, () => { console.log('failure'); callback() });
-    });
-
   }
 
   sync(callback) {
     this.props.BLE.syncData(this.props.device.uuid, (error, data) => {
       if (error) {
         console.log(error);
+        callback();
         return;
       }
       let buf = new Buffer(data.value, 'base64');
@@ -83,8 +63,6 @@ class ConnectedState extends Component {
         callback();
         this.props.BLE.endSync();
       }
-
-
     });
     /*receiveData( (resp) => {
       write(JSON.stringify(resp.data), () => {
@@ -97,6 +75,23 @@ class ConnectedState extends Component {
     });*/
   }
 
+  finish = () => {
+    Alert.alert('Finish Exercise',
+    '',
+    [
+      {
+        text: "Cancel",
+        style: "cancel"
+      },
+      {
+        text: "Finish",
+        onPress: () => {
+          console.log("finished");
+        }
+      }
+    ]);
+  }
+
   render() {
     return (
       <TopBar title={"BACPAC"} onMenuPress={this.props.navigation.toggleDrawer}>
@@ -107,9 +102,9 @@ class ConnectedState extends Component {
             <Text style={styles.text}>Battery:<Text style={styles.textNotBold}> {this.state.battery || '-'}%</Text></Text>
             <Text style={styles.text}>Storage:<Text style={styles.textNotBold}> {this.state.storage}%</Text></Text>
             <Text style={styles.text}>Last Sync:<Text style={styles.textNotBold}> {toRelativeTime(this.state.lastSync, Date.now())}</Text></Text>
-            <Text style={styles.text}>Last Push:<Text style={styles.textNotBold}> {toRelativeTime(this.state.lastPush, Date.now())}</Text></Text>
           </View>
           <Button push={this.push} sync={this.sync} pos={this.state.lastPush >= this.state.lastSync} />
+          <View style={styles.plainButton}><PlainButton color='rgb(70,100,140)' title="Finish" onPress={this.finish}/></View>
         </View>
       </TopBar>
 	  );

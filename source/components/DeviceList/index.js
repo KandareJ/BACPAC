@@ -26,7 +26,6 @@ class DeviceList extends Component {
   deviceFound(error, device) {
     if (error) console.log(error);
     else if (!(device.id in this.state) && device.name) {
-      console.log(device.id, device.name);
       this.setState({...this.state, [device.id]: device});
     }
   }

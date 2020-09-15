@@ -1,11 +1,10 @@
 import { BleManager } from 'react-native-ble-plx';
-
-const fakeIt = false;
+import { simulator } from '../utils/config';
 
 export default class BLEProxy {
   // public
   constructor() {
-    if (fakeIt) {
+    if (simulator) {
       // do nothing
     }
     else {
@@ -14,7 +13,7 @@ export default class BLEProxy {
   }
 
   scan = async (callback) => {
-    if (fakeIt) {
+    if (simulator) {
       callback(null, {name: "BACPAC", id: "asdf-ghjk-lmnb"})
     }
     else {
@@ -34,6 +33,10 @@ export default class BLEProxy {
   }
 
   syncData = async (deviceID, onReceiveData) => {
+    if (simulator) {
+      onReceiveData(1);
+      return;
+    }
     let device = await this.manager.discoverAllServicesAndCharacteristicsForDevice(deviceID);
     let services = await device.services();
     let characteristics = await this.manager.characteristicsForDevice(deviceID, services[0].uuid);
@@ -42,11 +45,12 @@ export default class BLEProxy {
   }
 
   endSync = () => {
+    if (simulator) return;
     this.manager.cancelTransaction('sync');
   }
 
   connect = async (deviceID, callback, onDisconnect) => {
-    if (fakeIt) {
+    if (simulator) {
       callback();
     }
     else {
