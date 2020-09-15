@@ -40,7 +40,11 @@ class ConnectedState extends Component {
     this.props.BLE.syncData(this.props.device.uuid, (error, data) => {
       if (error) {
         console.log(error);
-        callback();
+        let time = Date.now();
+        AsyncStorage.setItem(`lastSync`, JSON.stringify(time)).then(() => {
+          this.setState({lastSync: time});
+          callback();
+        });
         return;
       }
       let buf = new Buffer(data.value, 'base64');
