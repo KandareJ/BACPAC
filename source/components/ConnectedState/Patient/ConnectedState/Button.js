@@ -45,7 +45,7 @@ export default class Button extends Component {
     if (this.state.syncing) {
       return (
         <Animated.View style={this.buttonStyle()}>
-          <Image style={styles.pulse} source={require('../../../assets/img/SpinnerLoading.gif')} />
+          <Image style={styles.pulse} source={require('../../../../../assets/img/SpinnerLoading.gif')} />
           <Text style={styles.buttonText}>Syncing</Text>
         </Animated.View>
       );

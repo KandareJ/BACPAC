@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 
-import { imageList } from '../../../utils/config';
+import { imageList } from '../../../../utils/config';
 import { styles } from './styles';
 
 export default class TestSelector extends Component {
@@ -23,7 +23,7 @@ export default class TestSelector extends Component {
             <Text style={styles.selectorSubtext}>Last completed {this.props.test.time}</Text>
           </View>
           <View>
-            <Image source={require('../../../../assets/icons/done.png')} style={styles.icon}/>
+            <Image source={require('../../../../../assets/icons/done.png')} style={styles.icon}/>
           </View>
         </View>
       );

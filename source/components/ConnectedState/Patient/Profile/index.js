@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { connect } from 'react-redux';
 
-import TopBar from '../TopBar';
-import Button from '../Button';
+import TopBar from '../../../SharedComponents/TopBar';
+import Button from '../../../SharedComponents/Button';
 import RadioButtons from './RadioButtons';
 import { styles } from './styles';
-import { saveProfile, getProfile } from '../../logic/logicFacade';
+import { saveProfile, getProfile } from '../../../../logic/logicFacade';
 
 class Profile extends Component {
   state = {

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import TopBar from '../TopBar';
-import Button from '../Button';
+import TopBar from '../../../SharedComponents/TopBar';
+import Button from '../../../SharedComponents/Button';
 import { styles } from './styles';
 import { sync, push, battery, storage, issue } from './helpText';
-import { removeDevice } from '../../actions';
+import { removeDevice } from '../../../../actions';
 
 class HelpScreen extends Component {
   render () {

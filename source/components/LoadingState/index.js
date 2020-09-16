@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { styles } from './styles';
 import { finishConnecting } from '../../actions';
-import TopBar from '../TopBar';
+import TopBar from '../SharedComponents/TopBar';
 
 class LoadingState extends Component {
 

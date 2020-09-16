@@ -20,14 +20,14 @@ export default class TopBar extends Component {
     if (this.props.onMenuPress) {
       return (
         <TouchableOpacity style={styles.imageContainer} onPress={this.props.onMenuPress}>
-          <Image style={styles.image} source={require('../../../assets/img/menuButton.png')} />
+          <Image style={styles.image} source={require('../../../../assets/img/menuButton.png')} />
         </TouchableOpacity>
       );
     }
     else if (this.props.back) {
       return(
         <TouchableOpacity style={styles.imageContainer} onPress={this.props.back}>
-          <Image style={styles.image} source={require('../../../assets/icons/arrow_back_ios.png')} />
+          <Image style={styles.image} source={require('../../../../assets/icons/arrow_back_ios.png')} />
           <Text style={styles.iconText}>Back</Text>
         </TouchableOpacity>
       );

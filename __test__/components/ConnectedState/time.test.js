@@ -1,4 +1,4 @@
-import { toRelativeTime, minute, hour, day, month, year } from '../../../source/components/ConnectedState/time';
+import { toRelativeTime, minute, hour, day, month, year } from '../../../source/components/ConnectedState/Patient/ConnectedState/time';
 
 //time.js test suite
 describe('Relative Time Tests', () => {

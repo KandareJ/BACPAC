@@ -3,11 +3,11 @@ import { View, Text, Image, SafeAreaView, Button as PlainButton, Alert } from 'r
 import { connect } from 'react-redux';
 const Buffer = require('buffer/').Buffer
 
-import TopBar from '../TopBar';
+import TopBar from '../../../SharedComponents/TopBar';
 import Button from './Button';
 import { styles } from './styles';
 import { toRelativeTime } from './time';
-import { getLastSyncTime, Synchronizer } from '../../logic/logicFacade';
+import { getLastSyncTime, Synchronizer } from '../../../../logic/logicFacade';
 
 class ConnectedState extends Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class ConnectedState extends Component {
     return (
       <TopBar title={"BACPAC"} onMenuPress={this.props.navigation.toggleDrawer}>
         <View style={styles.bgView}>
-          <Image style={styles.image} source={require('../../../assets/img/BackHarnessWoman.png')} />
+          <Image style={styles.image} source={require('../../../../../assets/img/BackHarnessWoman.png')} />
           <View style={styles.textView}>
             <Text style={styles.text}>{this.props.device.name}</Text>
             <Text style={styles.text}>Battery:<Text style={styles.textNotBold}> {this.state.battery || '-'}%</Text></Text>

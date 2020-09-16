@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View, Text, Button as PlainButton, Alert } from 'react-native';
 import Video from 'react-native-video';
 
-import TopBar from '../../TopBar';
-import Button from '../../Button';
+import TopBar from '../../../SharedComponents/TopBar';
+import Button from '../../../SharedComponents/Button';
 import { styles } from './styles';
 
 export default class TestPreview extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 
-import TopBar from '../../TopBar';
+import TopBar from '../../../SharedComponents/TopBar';
 import Result from './Result';
 import { styles } from './styles';
 

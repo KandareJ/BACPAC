@@ -5,7 +5,7 @@ import { TapGestureHandler, State } from 'react-native-gesture-handler';
 
 import { height, styles } from './styles.js';
 import { runTiming } from './AnimationTiming';
-import DeviceList from '../DeviceList';
+import DeviceList from './DeviceList';
 
 export default class DisconnectedState extends Component {
   constructor() {

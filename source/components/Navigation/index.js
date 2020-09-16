@@ -5,11 +5,11 @@ import { createDrawerNavigator, DrawerItem, DrawerContentScrollView, DrawerItemL
 import { NavigationContainer } from '@react-navigation/native';
 
 import DisconnectedState from '../DisconnectedState';
-import ConnectedState from '../ConnectedState';
-import ClinicianConnectedState from '../Clinician/ClinicianConnectedState';
-import Profile from '../Profile';
+import ConnectedState from '../ConnectedState/Patient/ConnectedState';
+import ClinicianConnectedState from '../ConnectedState/Clinician/ClinicianConnectedState';
+import Profile from '../ConnectedState/Patient/Profile';
 import LoadingState from '../LoadingState';
-import HelpScreen from '../HelpScreen';
+import HelpScreen from '../ConnectedState/Patient/HelpScreen';
 import { removeDevice, createBLEProxy } from '../../actions';
 import { report, disconnect, help, home, person } from './icon';
 import { styles, drawerOptions } from './styles';

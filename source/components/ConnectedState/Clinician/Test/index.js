@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, Image, TextInput, Alert } from 'react-native';
 
-import TopBar from '../../TopBar';
-import Button from '../../Button';
+import TopBar from '../../../SharedComponents/TopBar';
+import Button from '../../../SharedComponents/Button';
 import { styles } from './styles';
 import { testDescriptions } from '../Tests/testDescriptions';
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import TopBar from '../../TopBar';
+import TopBar from '../../../SharedComponents/TopBar';
 import { styles } from './styles';
 
 class Profile extends Component {
