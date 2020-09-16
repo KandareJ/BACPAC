@@ -6,10 +6,6 @@ const BUCKET = '';
 const IAM_ACCESS_KEY = '';
 const IAM_ACCESS_SECRET = '';
 
-export const receiveData = (callback) => {
-    axios.get(getURL).then(callback);
-}
-
 export class s3 {
   constructor() {
     AWS.config.update({

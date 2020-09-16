@@ -6,17 +6,35 @@ import TopBar from '../TopBar';
 import Button from '../Button';
 import RadioButtons from './RadioButtons';
 import { styles } from './styles';
+import { saveProfile, getProfile } from '../../logic/logicFacade';
 
 class Profile extends Component {
   state = {
-    selected: '',
+    gender: '',
     name: '',
     age: '',
     changed: false
   }
 
+  componentDidMount() {
+    getProfile().then((resp) => {
+      this.setState(resp);
+    })
+  }
+
   back = () => {
     this.props.navigation.popToTop();
+  }
+
+  updateProfile = () => {
+    let profile = {
+      gender: this.state.gender,
+      name: this.state.name,
+      age: this.state.age,
+    }
+    saveProfile(profile).then(() => {
+      this.setState({ changed: false });
+    });
   }
 
   render() {
@@ -40,11 +58,11 @@ class Profile extends Component {
 
           <View style={{...styles.profileItem, flexDirection: 'column'}}>
             <Text style={{...styles.label, ...styles.text}}>Gender:</Text>
-            <RadioButtons options={['Male', 'Female', 'Prefer not to answer']} selected={this.state.selected} select={(selected) => { this.setState({selected, changed: true}) }} />
+            <RadioButtons options={['Male', 'Female', 'Prefer not to answer']} selected={this.state.gender} select={(gender) => { this.setState({gender, changed: true}) }} />
           </View>
 
           <View style={{alignItems: 'center'}}>
-            <Button text='Update' onPress={()=> {console.log("push")}} disabled={!this.state.changed} />
+            <Button text='Update' onPress={this.updateProfile} disabled={!this.state.changed} />
           </View>
 
         </View>
