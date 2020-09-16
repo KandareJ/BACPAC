@@ -27,17 +27,28 @@ export default class Button extends Component {
   }
 
   buttonStyle() {
+    if (this.props.disabled) return {...styles.button, backgroundColor: 'gray'}
     if (this.state.isPressed) return {...styles.button, ...styles.buttonPress};
     else return styles.button;
   }
 
   render () {
-    return (
-      <TapGestureHandler onHandlerStateChange={this.onDisconnectStateChange} >
+    if(this.props.disabled) {
+      return(
         <View style={this.buttonStyle()}>
           <Text style={styles.buttonText}> {this.props.text}</Text>
         </View>
-      </TapGestureHandler>
-    );
+      );
+    }
+    else {
+      return (
+        <TapGestureHandler onHandlerStateChange={this.onDisconnectStateChange} >
+          <View style={this.buttonStyle()}>
+            <Text style={styles.buttonText}> {this.props.text}</Text>
+          </View>
+        </TapGestureHandler>
+      );
+    }
+
   }
 }
