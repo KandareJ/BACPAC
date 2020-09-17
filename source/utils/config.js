@@ -1,2 +1,2 @@
 export const patient = true;
-export const simulator = true;
+export const simulator = false;

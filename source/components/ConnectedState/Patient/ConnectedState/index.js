@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Image, SafeAreaView, Button as PlainButton, Alert } from 'react-native';
 import { connect } from 'react-redux';
-const Buffer = require('buffer/').Buffer
 
 import TopBar from '../../../SharedComponents/TopBar';
 import Button from './Button';
@@ -18,7 +17,7 @@ class ConnectedState extends Component {
       lastSync: -1
     }
 
-    this.Synchronizer = new Synchronizer(props.BLE);
+    this.Synchronizer = new Synchronizer(props.BLE, props.device.uuid);
 
     getLastSyncTime().then((resp) => {
       this.setState({ lastSync: resp });

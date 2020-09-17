@@ -33,10 +33,6 @@ export default class BLEProxy {
   }
 
   syncData = async (deviceID, onReceiveData) => {
-    if (simulator) {
-      onReceiveData(1);
-      return;
-    }
     let device = await this.manager.discoverAllServicesAndCharacteristicsForDevice(deviceID);
     let services = await device.services();
     let characteristics = await this.manager.characteristicsForDevice(deviceID, services[0].uuid);
