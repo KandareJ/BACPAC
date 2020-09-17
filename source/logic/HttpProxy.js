@@ -15,8 +15,7 @@ export class s3 {
     });
   }
 
-  uploadFile = (file, prefix, success, failure) => {
-    let Key = (prefix) ? `${prefix}/test.txt` : `test.txt`;
+  uploadFile = (Key, success, failure) => {
     let upload = new AWS.S3.ManagedUpload({
         params: {
           Bucket: BUCKET,
