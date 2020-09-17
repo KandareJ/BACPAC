@@ -5,16 +5,19 @@ export const styles = {
     marginLeft: 15
   },
   label: {
+    fontSize: 22,
+    marginBottom: 15,
     fontWeight: 'bold'
   },
-  text: {
-    fontSize: 22,
-    marginBottom: 15
+  textInput: {
+    color: 'black',
+    fontSize: 22
   },
   profileItem: {
     flexDirection: 'row',
     marginHorizontal: 10,
-    marginBottom: 10
+    marginBottom: 10,
+    justifyContent: 'center'
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -40,5 +43,9 @@ export const styles = {
     width: 12,
     height: 12,
     borderRadius: 6
+  },
+  textInputBackground: {
+    flex: 1,
+    backgroundColor: 'red'
   }
 }

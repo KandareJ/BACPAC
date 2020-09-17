@@ -43,21 +43,21 @@ class Profile extends Component {
         <View style={styles.bg}>
 
           <View style={styles.profileItem}>
-            <View style={{flex: 1}}><Text style={{...styles.label, ...styles.text}}>Name:</Text></View>
+            <View style={{flex: 1}}><Text style={styles.label}>Name:</Text></View>
             <View style={{flex: 3}}>
-              <TextInput style={styles.text} value={this.state.name} onChangeText={(text) => {this.setState({name: text, changed: true})}}/>
+              <TextInput style={styles.textInput} value={this.state.name} onChangeText={(text) => {this.setState({name: text, changed: true})}}/>
             </View>
           </View>
 
           <View style={styles.profileItem}>
-            <View style={{flex: 1}}><Text style={{...styles.label, ...styles.text}}>Age:</Text></View>
-            <View style={{flex: 3}}>
-              <TextInput style={styles.text} keyboardType={'numeric'} value={this.state.age} onChangeText={(text) => {this.setState({age: text, changed: true})}}/>
+            <View style={{}}><Text style={styles.label}>Age:</Text></View>
+            <View style={styles.textInputBackground}>
+              <TextInput style={styles.textInput} keyboardType={'numeric'} value={this.state.age} onChangeText={(text) => {this.setState({age: text, changed: true})}}/>
             </View>
           </View>
 
           <View style={{...styles.profileItem, flexDirection: 'column'}}>
-            <Text style={{...styles.label, ...styles.text}}>Gender:</Text>
+            <Text style={styles.label}>Gender:</Text>
             <RadioButtons options={['Male', 'Female', 'Prefer not to answer']} selected={this.state.gender} select={(gender) => { this.setState({gender, changed: true}) }} />
           </View>
 
