@@ -239,6 +239,8 @@ PODS:
     - React
   - react-native-safe-area-context (2.0.3):
     - React
+  - react-native-slider (3.0.3):
+    - React
   - react-native-video (4.4.5):
     - React
     - react-native-video/Video (= 4.4.5)
@@ -357,6 +359,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-ble-plx (from `../node_modules/react-native-ble-plx`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
+  - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - react-native-video (from `../node_modules/react-native-video`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -426,6 +429,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-ble-plx"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
+  react-native-slider:
+    :path: "../node_modules/@react-native-community/slider"
   react-native-video:
     :path: "../node_modules/react-native-video"
   React-RCTActionSheet:
@@ -492,6 +497,7 @@ SPEC CHECKSUMS:
   React-jsinspector: 512e560d0e985d0e8c479a54a4e5c147a9c83493
   react-native-ble-plx: 21acd4201f9de46ab690b24898e8d3ad02f518fd
   react-native-safe-area-context: ce7e110923a56ba3e3c615d4920ebbe01324326e
+  react-native-slider: b733e17fdd31186707146debf1f04b5d94aa1a93
   react-native-video: aa527b0acb37f94c4491e70df0274cb26979405d
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0

@@ -2,7 +2,7 @@ export const styles = {
   bg: {
     flex: 1,
     marginTop: 40,
-    marginLeft: 15
+    marginHorizontal: 15
   },
   label: {
     fontSize: 22,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput } from 'react-native';
+import Slider from '@react-native-community/slider';
 import { connect } from 'react-redux';
 
 import TopBar from '../../../SharedComponents/TopBar';
@@ -13,6 +14,8 @@ class Profile extends Component {
     gender: '',
     name: '',
     age: '',
+    height: 68,
+    weight: 185,
     changed: false
   }
 
@@ -51,6 +54,22 @@ class Profile extends Component {
             <View style={styles.profileItem}>
               <Text style={styles.label}>Age:</Text>
               <TextInput style={styles.textInput} keyboardType={'numeric'} value={this.state.age} onChangeText={(text) => {this.setState({age: text, changed: true})}}/>
+            </View>
+
+            <View style={{...styles.profileItem, flexDirection: 'column'}}>
+              <Text style={styles.label}>Height:</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Slider style={{ height: 40, flex: 1}} minimumValue={36} maximumValue={84} value={this.state.height} onValueChange={(val) => {this.setState({height: val, changed: true})}} step={1} />
+                <Text style={{...styles.textInput, flex: 0, width: 77}}>{Math.floor(this.state.height / 12)}' {this.state.height % 12}"</Text>
+              </View>
+            </View>
+
+            <View style={{...styles.profileItem, flexDirection: 'column'}}>
+              <Text style={styles.label}>Weight: (lbs)</Text>
+              <View style={{flexDirection: 'row'}}>
+                <Slider style={{ height: 40, flex: 1}} minimumValue={20} maximumValue={300} value={this.state.weight} onValueChange={(val) => {this.setState({weight: val, changed: true})}} step={1} />
+                <Text style={{...styles.textInput, flex: 0, width: 77}}>{this.state.weight}</Text>
+              </View>
             </View>
 
             <View style={{...styles.profileItem, flexDirection: 'column'}}>
