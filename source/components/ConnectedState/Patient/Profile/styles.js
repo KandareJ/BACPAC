@@ -6,17 +6,13 @@ export const styles = {
   },
   label: {
     fontSize: 22,
-    marginBottom: 15,
-    fontWeight: 'bold'
-  },
-  textInput: {
-    color: 'black',
-    fontSize: 22
+    fontWeight: 'bold',
+    width: 90
   },
   profileItem: {
     flexDirection: 'row',
     marginHorizontal: 10,
-    marginBottom: 10,
+    marginBottom: 25,
     justifyContent: 'center'
   },
   buttonContainer: {
@@ -29,7 +25,7 @@ export const styles = {
     fontSize: 20
   },
   radioButton: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0)',
     borderColor: 'rgb(70,100,140)',
     borderWidth: 2,
     width: 20,
@@ -44,8 +40,17 @@ export const styles = {
     height: 12,
     borderRadius: 6
   },
-  textInputBackground: {
+  textInput: {
     flex: 1,
-    backgroundColor: 'red'
+    color: 'black',
+    marginHorizontal: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    fontSize: 22,
+    backgroundColor: 'white',
+    borderRadius: 10
+  },
+  form: {
+    flex: 1
   }
 }

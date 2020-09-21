@@ -42,26 +42,24 @@ class Profile extends Component {
       <TopBar title={'Profile'} onMenuPress={this.props.navigation.toggleDrawer}>
         <View style={styles.bg}>
 
-          <View style={styles.profileItem}>
-            <View style={{flex: 1}}><Text style={styles.label}>Name:</Text></View>
-            <View style={{flex: 3}}>
+          <View style={styles.form}>
+            <View style={styles.profileItem}>
+              <Text style={styles.label}>Name:</Text>
               <TextInput style={styles.textInput} value={this.state.name} onChangeText={(text) => {this.setState({name: text, changed: true})}}/>
             </View>
-          </View>
 
-          <View style={styles.profileItem}>
-            <View style={{}}><Text style={styles.label}>Age:</Text></View>
-            <View style={styles.textInputBackground}>
+            <View style={styles.profileItem}>
+              <Text style={styles.label}>Age:</Text>
               <TextInput style={styles.textInput} keyboardType={'numeric'} value={this.state.age} onChangeText={(text) => {this.setState({age: text, changed: true})}}/>
+            </View>
+
+            <View style={{...styles.profileItem, flexDirection: 'column'}}>
+              <Text style={styles.label}>Gender:</Text>
+              <RadioButtons options={['Male', 'Female', 'Other']} selected={this.state.gender} select={(gender) => { this.setState({gender, changed: true}) }} />
             </View>
           </View>
 
-          <View style={{...styles.profileItem, flexDirection: 'column'}}>
-            <Text style={styles.label}>Gender:</Text>
-            <RadioButtons options={['Male', 'Female', 'Prefer not to answer']} selected={this.state.gender} select={(gender) => { this.setState({gender, changed: true}) }} />
-          </View>
-
-          <View style={{alignItems: 'center'}}>
+          <View style={{alignItems: 'center', marginBottom: 50}}>
             <Button text='Update' onPress={this.updateProfile} disabled={!this.state.changed} />
           </View>
 

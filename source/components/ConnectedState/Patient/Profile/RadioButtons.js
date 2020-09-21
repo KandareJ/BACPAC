@@ -3,9 +3,13 @@ import { View, Text, TextInput, TouchableWithoutFeedback } from 'react-native';
 import { styles } from './styles';
 
 const RadioButtons = ({options, selected, select}) => {
-  return options.map((x) => {
-    return (<Button key={x} title={x} selected={x === selected} select={select} />);
-  });
+  return (
+    <View style={{marginTop: 10}}>
+      {options.map((x) => {
+        return (<Button key={x} title={x} selected={x === selected} select={select} />);
+      })}
+    </View>
+  );
 }
 
 const Button = ({title, selected, select}) => {
