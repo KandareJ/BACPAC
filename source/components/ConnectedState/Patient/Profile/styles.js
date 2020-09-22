@@ -1,16 +1,14 @@
 export const styles = {
   bg: {
     flex: 1,
-    marginTop: 40,
     marginHorizontal: 15
   },
   label: {
     fontSize: 22,
     fontWeight: 'bold',
-    width: 90
+    marginBottom: 10
   },
   profileItem: {
-    flexDirection: 'row',
     marginHorizontal: 10,
     marginBottom: 25,
     justifyContent: 'center'
@@ -43,7 +41,6 @@ export const styles = {
   textInput: {
     flex: 1,
     color: 'black',
-    marginHorizontal: 20,
     paddingHorizontal: 10,
     paddingVertical: 5,
     fontSize: 22,
@@ -52,5 +49,16 @@ export const styles = {
   },
   form: {
     flex: 1
+  },
+  sliderText: {
+    flex: 1,
+    color: 'black',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginLeft: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 }

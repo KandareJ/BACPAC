@@ -4,7 +4,7 @@ import { styles } from './styles';
 
 const RadioButtons = ({options, selected, select}) => {
   return (
-    <View style={{marginTop: 10}}>
+    <View>
       {options.map((x) => {
         return (<Button key={x} title={x} selected={x === selected} select={select} />);
       })}
