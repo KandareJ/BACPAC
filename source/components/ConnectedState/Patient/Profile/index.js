@@ -89,8 +89,8 @@ class Profile extends Component {
                 </View>
 
                 <View style={{...styles.profileItem, flexDirection: 'column'}}>
-                  <Text style={styles.label}>Gender:</Text>
-                  <RadioButtons options={['Male', 'Female', 'Other']} selected={this.state.gender} select={(gender) => { this.setState({gender, changed: true}) }} />
+                  <Text style={styles.label}>Sex:</Text>
+                  <RadioButtons options={['Male', 'Female']} selected={this.state.gender} select={(gender) => { this.setState({gender, changed: true}) }} />
                 </View>
 
                 <DateOfBirth dob={this.state.dob} set={(dob) => {this.setState({dob, changed: true})}} toggle={this.toggle} visible={this.state.dateVisible} />
