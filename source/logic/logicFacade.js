@@ -16,6 +16,20 @@ export const getLastSyncTime = () => {
   return getSync();
 }
 
+export const finish = async (failure) => {
+  let aws = new s3();
+  let profile = await getProfile();
+  profile.finishTime = new Date();
+  let buf = new Buffer(JSON.stringify(profile));
+  let key = `patient/${profile.last_name}:${buf.toString('base64')}`;
+  let body = await read();
+  aws.uploadFile(key, body, onUpload, failure);
+}
+
+const onUpload = () => {
+  console.log("data successfully uploaded to AWS");
+}
+
 export class Synchronizer {
   constructor(BLE, deviceID) {
     this.BLE = BLE;
@@ -25,6 +39,7 @@ export class Synchronizer {
 
   sync = async (callback) => {
     if (simulator) {
+      await deleteFile();
       await write(JSON.stringify([0, 1, 2, 3]));
       let time = await saveSync();
       callback(time);

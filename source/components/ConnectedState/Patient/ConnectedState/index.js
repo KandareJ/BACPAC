@@ -6,7 +6,7 @@ import TopBar from '../../../SharedComponents/TopBar';
 import Button from './Button';
 import { styles } from './styles';
 import { toRelativeTime } from './time';
-import { getLastSyncTime, Synchronizer } from '../../../../logic/logicFacade';
+import { getLastSyncTime, Synchronizer, finish } from '../../../../logic/logicFacade';
 
 class ConnectedState extends Component {
   constructor(props) {
@@ -45,11 +45,13 @@ class ConnectedState extends Component {
       },
       {
         text: "Finish",
-        onPress: () => {
-          console.log("finished");
-        }
+        onPress: () => { finish(this.uploadError); }
       }
     ]);
+  }
+
+  uploadError = () => {
+    Alert.alert('Error uploading data to cloud.', '', [ { text: "Okay" } ]);
   }
 
   render() {

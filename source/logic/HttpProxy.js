@@ -1,8 +1,7 @@
 import AWS from 'aws-sdk';
 import axios from 'axios';
 
-const getURL = 'https://manifold.picolabs.io:9090/sky/cloud/NDUTywTKJwDH5Y9wdgXUoo/io.picolabs.manifold.weather_pico/getCurrent';//'http://gutenberg.org/files/17/17.txt';
-const BUCKET = '';
+const BUCKET = 'bacpac';
 const IAM_ACCESS_KEY = '';
 const IAM_ACCESS_SECRET = '';
 
@@ -15,7 +14,7 @@ export class s3 {
     });
   }
 
-  uploadFile = (Key, success, failure) => {
+  uploadFile = (Key, file, success, failure) => {
     let upload = new AWS.S3.ManagedUpload({
         params: {
           Bucket: BUCKET,
