@@ -10,6 +10,10 @@ export const getSync = async () => {
   return JSON.parse(await AsyncStorage.getItem(`lastSync`));
 }
 
+export const clearSync = async () => {
+  return AsyncStorage.removeItem(`lastSync`);
+}
+
 export const saveProfile = async (profile) => {
   await AsyncStorage.setItem(`profile`, JSON.stringify(profile));
   return 0;

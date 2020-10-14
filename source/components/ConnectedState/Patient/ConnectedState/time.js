@@ -8,7 +8,7 @@ export const toRelativeTime = (previous, current) => {
   let elapsed = current - previous;
   let val = 0;
 
-  if (elapsed < 0 || previous === -1) {
+  if (elapsed < 0 || previous === -1 || !previous) {
     return '-';
   }
 

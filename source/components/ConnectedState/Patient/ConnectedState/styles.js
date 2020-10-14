@@ -48,6 +48,8 @@ export const styles = StyleSheet.create({
   },
   textView: {
     marginTop: 30,
+    paddingHorizontal: 70,
+    width: '100%'
   },
   text: {
     fontSize: 20,

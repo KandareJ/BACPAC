@@ -1,5 +1,5 @@
 const Buffer = require('buffer/').Buffer;
-import { saveSync, getSync, saveProfile as sProfile, getProfile as gProfile } from './DatabaseProxy';
+import { saveSync, getSync, clearSync, saveProfile as sProfile, getProfile as gProfile } from './DatabaseProxy';
 import { write, read, deleteFile } from './FileSystemProxy';
 import { s3 } from './HttpProxy';
 import { simulator } from '../utils/config.js';
@@ -28,6 +28,8 @@ export const finish = async (failure) => {
 
 const onUpload = () => {
   console.log("data successfully uploaded to AWS");
+  clearSync();
+  deleteFile();
 }
 
 export class Synchronizer {
