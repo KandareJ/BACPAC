@@ -1,5 +1,5 @@
 const Buffer = require('buffer/').Buffer;
-import { saveSync, getSync, clearSync, saveProfile as sProfile, getProfile as gProfile } from './DatabaseProxy';
+import { saveSync, getSync, clearSync, saveProfile as sProfile, getProfile as gProfile, savePatient as sPatient } from './DatabaseProxy';
 import { write, read, deleteFile } from './FileSystemProxy';
 import { s3 } from './HttpProxy';
 import { simulator } from '../utils/config.js';
@@ -10,6 +10,10 @@ export const getProfile = () => {
 
 export const saveProfile = (profile) => {
   return sProfile(profile);
+}
+
+export const savePatient = (patient) => {
+  return sPatient(patient)
 }
 
 export const getLastSyncTime = () => {

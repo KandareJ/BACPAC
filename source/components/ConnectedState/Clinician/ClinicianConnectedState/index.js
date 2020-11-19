@@ -15,10 +15,8 @@ const Stack = createStackNavigator();
 export default class ClinicianConnectedState extends Component {
   render() {
     return (
-      <SelectPatient />
-    );
-    /*return (
       <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Patient" component={SelectPatient} />
         <Stack.Screen headerShown={false} name="Tests" component={Tests} />
         <Stack.Screen name="Test" component={Test} />
         <Stack.Screen name="TestPreview" component={TestPreview} />
@@ -26,6 +24,6 @@ export default class ClinicianConnectedState extends Component {
         <Stack.Screen name="Results" component={Results} />
         <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
-    );*/
+    );
   }
 };

@@ -34,6 +34,7 @@ export default class Results extends Component {
 
   done() {
     this.props.navigation.popToTop();
+    this.props.navigation.push('Tests');
   }
 
   generateList = () => {

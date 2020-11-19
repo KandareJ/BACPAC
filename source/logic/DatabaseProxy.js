@@ -29,7 +29,9 @@ export const getPatients = async () => {
   return JSON.parse(patients);
 }
 
-export const savePatients = async (patients) => {
+export const savePatient = async (patient) => {
+  let patients = await getPatients();
+  patients.push(patient);
   await AsyncStorage.setItem('patients', JSON.stringify(patients));
   return 0;
 }

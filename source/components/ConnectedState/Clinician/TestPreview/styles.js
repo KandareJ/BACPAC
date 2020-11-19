@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 export const { height, width } = Dimensions.get('window')
 
-const aspectRatio = 9/16;
+const aspectRatio = 3/4;
 
 export const styles = StyleSheet.create({
   bg: {
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
   },
    video: {
      width: width*.95,
-     height: 300,//width*.95*aspectRatio,
+     height: width*.95*aspectRatio,
    },
    button: {
      width: '100%',

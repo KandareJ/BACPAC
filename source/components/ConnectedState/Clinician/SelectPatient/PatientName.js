@@ -2,9 +2,9 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
 
-const PatientName = ({patientInfo}) => {
+const PatientName = ({ patientInfo, onPress }) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
     <View style={styles.name}>
       <Text style={styles.nameText}>{patientInfo.last_name}, {patientInfo.first_name}</Text>
       <Text style={styles.nameSubtext}>Sex: {patientInfo.sex}</Text>
