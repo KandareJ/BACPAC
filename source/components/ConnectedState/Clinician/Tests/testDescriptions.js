@@ -1,7 +1,7 @@
 export const testDescriptions = [
   {
     title: "Flexion",
-    video: require("../../../../../assets/vid/Squat.mp4"),
+    video: require("../../../../../assets/vid/Exercise1.mov"),
     image: require("../../../../../assets/img/squat.jpg"),
     key: 'flexion',
     time: '1 day ago'

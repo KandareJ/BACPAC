@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 export const { height, width } = Dimensions.get('window')
 
-const aspectRatio = 3/4;
+const aspectRatio = 9/16;
 
 export const styles = StyleSheet.create({
   bg: {
